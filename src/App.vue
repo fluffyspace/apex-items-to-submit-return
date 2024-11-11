@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <textarea name="plsqlcode" id="plsqlcode" class="full" rows="30" v-model="plsqlcode"></textarea>
+  <textarea name="plsqlcode" id="plsqlcode" class="full" rows="30" v-model="plsqlcode" @input="doit()"></textarea>
 
 <div>
   Items to submit:
