@@ -29,13 +29,13 @@
       <tbody>
         <tr>
           <td>Sve</td>
-          <td><input type="checkbox" @change="toggleSubmit()" v-model="toggleSubmitCheckbox" /></td>
-          <td><input type="checkbox" @change="toggleReturn()" v-model="toggleReturnCheckbox" /></td>
+          <td><input type="checkbox" @change="toggleSubmit()" class="largerCheckbox" v-model="toggleSubmitCheckbox" /></td>
+          <td><input type="checkbox" @change="toggleReturn()" class="largerCheckbox" v-model="toggleReturnCheckbox" /></td>
         </tr>
         <tr v-for="item in items">
           <td>{{item.name}}</td>
-          <td><input type="checkbox" v-model="item.submit" /></td>
-          <td><input type="checkbox" v-model="item.return" /></td>
+          <td><input type="checkbox" v-model="item.submit" class="largerCheckbox"/></td>
+          <td><input type="checkbox" v-model="item.return" class="largerCheckbox"/></td>
         </tr>
       </tbody>
     </table>
@@ -141,8 +141,22 @@
         }
 
         this.items = JSON.parse(JSON.stringify(this.items.map(item => {
-          return {"name": item, "submit": true, "return": true};
+          return {"name": item.toUpperCase(), "submit": true, "return": true};
         })));
+
+        this.items = this.items.sort((a, b) => {
+          const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+          const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+          if (nameA < nameB) {
+            return -1;
+          }
+          if (nameA > nameB) {
+            return 1;
+          }
+
+          // names must be equal
+          return 0;
+        });
 
       },
       toggleSubmit(){

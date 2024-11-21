@@ -5,6 +5,7 @@
   margin: 0 auto;
   padding: 2rem;
   font-weight: normal;
+  color:white;
 }
 
 a,
@@ -41,4 +42,8 @@ textarea{
 button{
   padding: 10px;
   font-size: 18px;
+}
+input.largerCheckbox {
+  width: 40px;
+  height: 40px;
 }
