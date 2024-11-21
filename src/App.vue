@@ -41,7 +41,7 @@
     </table>
 
     
-    <button @click="doit()" class="btn btn-primary">Convert</button>
+    <!--<button @click="doit()" class="btn btn-primary">Convert</button>-->
 
   </div>
 </div>
