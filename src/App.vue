@@ -3,37 +3,48 @@
 </script>
 
 <template>
-  <textarea name="plsqlcode" id="plsqlcode" class="full" rows="30" v-model="plsqlcode" @input="doit()"></textarea>
+  <div style="display:flex;">
+    <div style="width:75%">
+      <textarea name="plsqlcode" id="plsqlcode" class="full" rows="30" v-model="plsqlcode" @input="doit()"></textarea>
 
-<div>
-  Items to submit:
-  <textarea id="submit" class="full" v-model="items_to_submit"></textarea>
-  <br>
-  Items to return:
-  <textarea id="return" class="full" v-model="items_to_return"></textarea>
+      <div>
+        Items to submit:
+        <textarea id="submit" class="full" v-model="items_to_submit"></textarea>
+        <br>
+        Items to return:
+        <textarea id="return" class="full" v-model="items_to_return"></textarea>
+      </div>
+    </div>
+    <div style="width:25%;padding:10px">
+
+    <table>
+      <thead>
+        <tr>
+          <th>Naziv</th>
+          <th>Submit</th>
+          <th>Return</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Sve</td>
+          <td><input type="checkbox" @change="toggleSubmit()" v-model="toggleSubmitCheckbox" /></td>
+          <td><input type="checkbox" @change="toggleReturn()" v-model="toggleReturnCheckbox" /></td>
+        </tr>
+        <tr v-for="item in items">
+          <td>{{item.name}}</td>
+          <td><input type="checkbox" v-model="item.submit" /></td>
+          <td><input type="checkbox" v-model="item.return" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    
+    <button @click="doit()" class="btn btn-primary">Convert</button>
+
+  </div>
 </div>
-
-  <button @click="doit()" class="btn btn-primary">Convert</button>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Naziv</th>
-        <th>Submit</th>
-        <th>Return</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr v-for="item in items">
-        <td>{{item.name}}</td>
-        <td><input type="checkbox" v-model="item.submit" /></td>
-        <td><input type="checkbox" v-model="item.return" /></td>
-      </tr>
-    </tbody>
-  </table>
-
-
 </template>
 
 <style scoped>
@@ -107,6 +118,8 @@
   else
       :strana_bsh := 'D';
   end if;	`,
+        toggleSubmitCheckbox: null,
+        toggleReturnCheckbox: null
       }
     },
 
@@ -131,6 +144,12 @@
           return {"name": item, "submit": true, "return": true};
         })));
 
+      },
+      toggleSubmit(){
+        this.items.forEach(item => item.submit = this.toggleSubmitCheckbox);
+      },
+      toggleReturn(){
+        this.items.forEach(item => item.return = this.toggleReturnCheckbox);
       }
     },
 

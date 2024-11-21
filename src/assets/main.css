@@ -24,7 +24,7 @@ a,
 @media (min-width: 1024px) {
   body {
     /*display: flex;*/
-    place-items: center;
+/*    place-items: center;*/
   }
 
   /*#app {
@@ -32,4 +32,13 @@ a,
     grid-template-columns: 1fr 1fr;
     padding: 0 2rem;
   }*/
+}
+
+textarea{
+  background: #3b3b3b;
+  color:white;
+}
+button{
+  padding: 10px;
+  font-size: 18px;
 }
