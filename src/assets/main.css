@@ -5,7 +5,7 @@
   margin: 0 auto;
   padding: 2rem;
   font-weight: normal;
-  color:white;
+  /*color:white;*/
 }
 
 a,
@@ -44,6 +44,6 @@ button{
   font-size: 18px;
 }
 input.largerCheckbox {
-  width: 40px;
-  height: 40px;
+  width: 20px;
+  height: 20px;
 }

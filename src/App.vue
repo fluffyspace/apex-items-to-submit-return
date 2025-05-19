@@ -16,7 +16,9 @@
       </div>
     </div>
     <div style="width:25%;padding:10px">
-
+      <input type="checkbox" class="largerCheckbox" v-model="sortiraj" />
+      Sortiraj po imenu kod lijepljenja (inače će se itemi uzimati po redu kako se spominju u kodu)
+      <hr>
     <table>
       <thead>
         <tr>
@@ -119,7 +121,8 @@
       :strana_bsh := 'D';
   end if;	`,
         toggleSubmitCheckbox: null,
-        toggleReturnCheckbox: null
+        toggleReturnCheckbox: null,
+        sortiraj: false,
       }
     },
 
@@ -144,19 +147,21 @@
           return {"name": item.toUpperCase(), "submit": true, "return": true};
         })));
 
-        this.items = this.items.sort((a, b) => {
-          const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-          const nameB = b.name.toUpperCase(); // ignore upper and lowercase
-          if (nameA < nameB) {
-            return -1;
-          }
-          if (nameA > nameB) {
-            return 1;
-          }
+        if(this.sortiraj){
+          this.items = this.items.sort((a, b) => {
+            const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+            const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+            if (nameA < nameB) {
+              return -1;
+            }
+            if (nameA > nameB) {
+              return 1;
+            }
 
-          // names must be equal
-          return 0;
-        });
+            // names must be equal
+            return 0;
+          });
+        }
 
       },
       toggleSubmit(){
